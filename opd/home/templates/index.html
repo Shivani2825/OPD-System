@@ -1,0 +1,33 @@
+
+
+<h1>Available Doctor</h1>
+<table>
+    {%for i in data %}
+    <tr>
+        <td>{{i.name}}</td>
+        <td>{{i.speciality}}</td>
+    </tr>
+    {%endfor%}
+</table>
+<h1>Book Appointment</h1>
+<form action="/book/" method="POST">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="Enter name" />
+    <br>
+    <input type="number" name="age" placeholder="Enter name" />
+    <br>
+    <select name="doctor">
+        {%for i in data%}
+        <option value="{{i.id}}">{{i.name}}-{{i.speciality}}</option>
+        {%endfor%}
+    </select>
+    <button type="submit">submit</button>
+</form>
+
+<script>
+    {%if messages%}
+    {%for message in messages%}
+    window.alert("{{message}}")
+    {%endfor%}
+    {%endif%}
+</script>
